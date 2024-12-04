@@ -1,20 +1,20 @@
 package org.mycompany.shopinventory.service;
 
+import lombok.RequiredArgsConstructor;
 import org.mycompany.shopinventory.dto.Product;
 import org.mycompany.shopinventory.repository.ProductRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class ProductService {
 
     private final ProductRepository repository;
-
-    public ProductService(ProductRepository repository) {
-        this.repository = repository;
-    }
 
     public List<Product> getAllProducts() {
         return repository.findAll();
@@ -28,6 +28,7 @@ public class ProductService {
         return repository.save(product);
     }
 
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
     public Product updateProduct(Long id, Product product) {
         return repository.findById(id)
                          .map(existingProduct -> {
