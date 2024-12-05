@@ -1,18 +1,18 @@
 package org.mycompany.shopinventory.service;
 
+import lombok.RequiredArgsConstructor;
 import org.mycompany.shopinventory.dto.Category;
 import org.mycompany.shopinventory.repository.CategoryRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class CategoryService {
 
-    @Autowired
-    private CategoryRepository categoryRepository;
+    private final CategoryRepository categoryRepository;
 
     public Category saveCategory(Category category) {
         return categoryRepository.save(category);
