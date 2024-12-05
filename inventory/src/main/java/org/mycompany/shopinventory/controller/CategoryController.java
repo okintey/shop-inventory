@@ -3,7 +3,6 @@ package org.mycompany.shopinventory.controller;
 import lombok.RequiredArgsConstructor;
 import org.mycompany.shopinventory.dto.Category;
 import org.mycompany.shopinventory.service.CategoryService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,7 +14,7 @@ import java.util.Optional;
 @RequestMapping("/api/categories")
 public class CategoryController {
 
-    private CategoryService categoryService;
+    private final CategoryService categoryService;
 
     @PostMapping
     public ResponseEntity<Category> createCategory(@RequestBody Category category) {

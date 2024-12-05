@@ -1,0 +1,14 @@
+version: '3'
+services:
+  localstack:
+    image: localstack/localstack:latest
+    container_name: inventory-localstack
+    ports:
+      - "4566:4566"  # Edge port for all AWS services
+      - "4571:4571"  # SQS port
+    environment:
+      - SERVICES=sqs
+      - DEFAULT_REGION=eq-west-1
+    volumes:
+      - ./docker_data/localstack:/var/lib/localstack
+      - ./init-localstack.sh:/etc/localstack/init/ready.d/init-aws.sh

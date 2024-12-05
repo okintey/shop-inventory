@@ -3,6 +3,8 @@ package org.mycompany.shopinventory.dto;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.math.BigDecimal;
+
 @Data
 @Entity
 @Table(name = "products")
@@ -19,7 +21,7 @@ public class Product {
     private String description;
 
     @Column
-    private double price;
+    private BigDecimal price;
 
     @Column
     private int quantity;
